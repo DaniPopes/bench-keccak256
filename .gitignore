@@ -1,0 +1,7 @@
+target
+bin
+out
+.vscode
+.idea
+*.txt
+*.out
