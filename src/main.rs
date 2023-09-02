@@ -14,21 +14,13 @@ fn main() {
 
 cfg_if! {
     if #[cfg(feature = "sha3")] {
-        #[inline(never)]
-        fn keccak256(input: &[u8], output: &mut [u8; 32]) {
-            use sha3::Digest;
-            let mut h = sha3::Sha3_256::new();
-            h.update(input);
-            h.finalize_into(output.into());
-        }
+        use bench_keccak256::sha3 as keccak256;
     } else if #[cfg(feature = "tiny-keccak")] {
-        #[inline(never)]
-        fn keccak256(input: &[u8], output: &mut [u8; 32]) {
-            use tiny_keccak::Hasher;
-            let mut h = tiny_keccak::Keccak::v256();
-            h.update(input);
-            h.finalize(output);
-        }
+        use bench_keccak256::tiny_keccak as keccak256;
+    // } else if #[cfg(feature = "sha3-asm")] {
+    //     use bench_keccak256::sha3_asm as keccak256;
+    } else if #[cfg(feature = "keccak-asm")] {
+        use bench_keccak256::keccak_asm as keccak256;
     } else {
         compile_error!("Must select a Keccak-256 backend with a feature flag");
     }
