@@ -57,7 +57,7 @@ fn size(hash_fn: HashFn, args: &[String]) {
     let mut input = vec![0u8; n];
     rand::thread_rng().fill_bytes(&mut input);
     let output = &mut [0u8; 32];
-    black_box(hash_fn(&input[..], output));
+    hash_fn(black_box(&input[..]), black_box(output));
     black_box(output);
 }
 
@@ -72,7 +72,7 @@ fn count(hash_fn: HashFn, args: &[String]) {
     let input = &input[..];
     let output = &mut [0u8; 32];
     for _ in 0..n {
-        black_box(hash_fn(input, output));
+        hash_fn(black_box(input), black_box(output));
     }
     black_box(output);
 }

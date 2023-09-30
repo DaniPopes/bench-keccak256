@@ -37,8 +37,7 @@ dependencies = [
  "hex",
  "keccak-asm",
  "rand",
- "sha3 0.10.8",
- "sha3 0.10.8 (registry+https://github.com/rust-lang/crates.io-index)",
+ "sha3",
  "tiny-keccak",
 ]
 
@@ -628,15 +627,6 @@ dependencies = [
  "itoa",
  "ryu",
  "serde",
-]
-
-[[package]]
-name = "sha3"
-version = "0.10.8"
-dependencies = [
- "digest",
- "keccak",
- "sha3-asm",
 ]
 
 [[package]]

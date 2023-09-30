@@ -30,7 +30,7 @@ hyperfine: build
 	for backend in $(BACKENDS); do \
 		args+=("$(BIN) $$backend count $(RUNS)"); \
 	done; \
-	hyperfine -w5 -r10 "$${args[@]}";
+	hyperfine -w10 -r20 "$${args[@]}";
 
 clean:
 	@rm -rf ./out
