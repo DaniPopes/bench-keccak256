@@ -6,24 +6,16 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-cfg-if = "1.0.0"
 rand = "0.8.5"
 
-sha3 = { version = "0.10.8", optional = true }
-tiny-keccak = { version = "2.0.2", optional = true, features = ["keccak"] }
-sha3-asm = { path = "../sha3-asm", package = "sha3", optional = true }
-keccak-asm = { path = "../keccak-asm", optional = true }
+sha3 = { version = "0.10.8" }
+tiny-keccak = { version = "2.0.2", features = ["keccak"] }
+sha3-asm = { path = "../sha3-asm", package = "sha3" }
+keccak-asm = { path = "../keccak-asm" }
 
 [dev-dependencies]
-bench-keccak256 = { path = ".", features = ["sha3", "tiny-keccak", "sha3-asm", "keccak-asm"] }
 criterion = "0.5.1"
 hex = "0.4.3"
-
-[features]
-sha3 = ["dep:sha3"]
-tiny-keccak = ["dep:tiny-keccak"]
-sha3-asm = ["dep:sha3-asm"]
-keccak-asm = ["dep:keccak-asm"]
 
 [profile.release]
 opt-level = 3

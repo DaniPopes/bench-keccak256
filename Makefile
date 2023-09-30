@@ -2,14 +2,12 @@ NAME=bench-keccak256
 BACKENDS = sha3 tiny-keccak keccak-asm
 SIZES = 1 2 4 8 16 20 32 64 100 128 256 512 1024 2048 4096 8192 10000 16384 32768 65536
 # SIZES = 32
+RUNS = 1000000
+BIN = target/release/$(NAME)
 
 build:
-	@mkdir -p ./bin; \
-	for backend in $(BACKENDS); do \
-		echo "Building $$backend..."; \
-		cargo build -qrF $$backend; \
-		cp -f target/release/$(NAME) bin/$$backend; \
-	done
+	@echo "Building..."; \
+	cargo build -qr
 
 # --cache-sim=yes --branch-sim=yes
 bench: build
@@ -21,11 +19,18 @@ bench: build
 			printf "%5s -> " $$size; \
 			valgrind --tool=callgrind --callgrind-out-file=$$outfile \
 				--dump-instr=yes --collect-jumps=yes \
-				./bin/$$backend $$size 2>&1 \
+				$(BIN) $$backend size $$size 2>&1 \
 				| grep "I   refs:" \
 				| grep -oE '[0-9,]+$$'; \
 		done \
 	done
 
+hyperfine: build
+	@args=(); \
+	for backend in $(BACKENDS); do \
+		args+=("$(BIN) $$backend count $(RUNS)"); \
+	done; \
+	hyperfine -w5 -r10 "$${args[@]}";
+
 clean:
-	@rm -rf ./bin ./out
+	@rm -rf ./out
