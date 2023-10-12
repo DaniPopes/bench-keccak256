@@ -41,6 +41,11 @@ fn main() {
     match mode.as_str() {
         "size" => size(hash_fn, args),
         "count" => count(hash_fn, args),
+        "info" => {
+            if backend == "keccak-asm" && ALL.iter().any(|x| x.0 == "keccak-asm") {
+                eprintln!("keccak-asm impl: {}", keccak_asm::IMPL);
+            }
+        }
         mode => {
             eprintln!("Unknown mode: {mode}");
             exit(1);
