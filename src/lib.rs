@@ -7,8 +7,8 @@ pub type HashFn = fn(input: &[u8], output: &mut [u8; 32]);
 pub const ALL: &[(&str, HashFn)] = &[
     ("sha3", sha3),
     ("tiny-keccak", tiny_keccak),
-    // ("sha3-asm", sha3_asm),
     ("keccak-asm", keccak_asm),
+    ("xkcp", xkcp),
 ];
 
 /// [`sha3`](::sha3)
@@ -29,15 +29,6 @@ pub fn tiny_keccak(input: &[u8], output: &mut [u8; 32]) {
     h.finalize(output);
 }
 
-// /// [`sha3_asm`](::sha3_asm)
-// #[inline(never)]
-// pub fn sha3_asm(input: &[u8], output: &mut [u8; 32]) {
-//     use sha3_asm::Digest;
-//     let mut h = sha3_asm::Keccak256::new();
-//     h.update(input);
-//     h.finalize_into(output.into());
-// }
-
 /// [`keccak_asm`](::keccak_asm)
 #[inline(never)]
 pub fn keccak_asm(input: &[u8], output: &mut [u8; 32]) {
@@ -45,6 +36,12 @@ pub fn keccak_asm(input: &[u8], output: &mut [u8; 32]) {
     let mut h = keccak_asm::Keccak256::new();
     h.update(input);
     h.finalize_into(output.into());
+}
+
+/// [`xkcp_rs`]
+#[inline(never)]
+pub fn xkcp(input: &[u8], output: &mut [u8; 32]) {
+    xkcp_rs::keccak256(input, output);
 }
 
 #[cfg(test)]
@@ -55,7 +52,7 @@ mod tests {
     #[test]
     fn test_all() {
         if ALL.is_empty() {
-            panic!("No Keccak-256 backends selected");
+            panic!("No Keccak-256 backends available");
         }
 
         let max_sz = 1024;

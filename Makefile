@@ -1,7 +1,7 @@
 SHELL = /bin/bash
 
 NAME = bench-keccak256
-BACKENDS = keccak-asm tiny-keccak sha3
+BACKENDS = xkcp keccak-asm tiny-keccak sha3
 SIZES = 1 2 4 8 16 20 32 64 100 128 256 512 1024 2048 4096 8192 10000 16384 32768 65536
 # SIZES = 32
 RUNS = 1000000
@@ -14,7 +14,6 @@ build:
 		$(BIN) $$backend info; \
 	done
 
-# --cache-sim=yes --branch-sim=yes
 bench: build
 	@mkdir -p ./out; \
 	for backend in $(BACKENDS); do \

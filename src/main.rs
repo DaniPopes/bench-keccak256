@@ -76,7 +76,7 @@ fn count(hash_fn: HashFn, args: &[String]) {
     rand::thread_rng().fill_bytes(&mut input);
     let input = &input[..];
     let output = &mut [0u8; 32];
-    for _ in 0..n {
+    for _ in 0..black_box(n) {
         hash_fn(black_box(input), black_box(output));
     }
     black_box(output);
