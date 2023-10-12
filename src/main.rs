@@ -45,6 +45,12 @@ fn main() {
             if backend == "keccak-asm" && ALL.iter().any(|x| x.0 == "keccak-asm") {
                 eprintln!("keccak-asm impl: {}", keccak_asm::IMPL);
             }
+            if backend == "xkcp" && ALL.iter().any(|x| x.0 == "xkcp") {
+                eprintln!(
+                    "xkcp impl:       {}",
+                    xkcp_rs::ffi::KeccakP1600_implementation.to_str().unwrap(),
+                );
+            }
         }
         mode => {
             eprintln!("Unknown mode: {mode}");
