@@ -1,4 +1,5 @@
-NAME=bench-keccak256
+SHELL = /bin/bash
+NAME = bench-keccak256
 BACKENDS = sha3 tiny-keccak keccak-asm
 SIZES = 1 2 4 8 16 20 32 64 100 128 256 512 1024 2048 4096 8192 10000 16384 32768 65536
 # SIZES = 32
