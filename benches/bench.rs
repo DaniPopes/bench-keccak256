@@ -24,7 +24,7 @@ fn bench_all(c: &mut Criterion) {
 
             // g.throughput(criterion::Throughput::Bytes(count as u64));
             g.bench_function(BenchmarkId::from_parameter(count), |b| {
-                b.iter(|| black_box(hash_fn)(black_box(input), black_box(output)));
+                b.iter(|| hash_fn(black_box(input), black_box(output)));
             });
         }
     }
