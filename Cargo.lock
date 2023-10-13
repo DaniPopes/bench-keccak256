@@ -978,14 +978,18 @@ checksum = "ed94fce61571a4006852b7389a063ab983c02eb1bb37b47f8272ce92d06d9538"
 
 [[package]]
 name = "xkcp-rs"
-version = "0.1.0"
+version = "0.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "11b6e06ac59837b6cde03970d6ad283f322791933fca24cfffeedacb0ec95e28"
 dependencies = [
  "xkcp-sys",
 ]
 
 [[package]]
 name = "xkcp-sys"
-version = "0.1.0"
+version = "0.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f1b8cbf734ec784a6497f6962f37a10b1136ede5a5bf9c3ab1b4fb57fd936a8c"
 dependencies = [
  "bindgen",
  "cc",
