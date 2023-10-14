@@ -42,10 +42,10 @@ fn main() {
         "size" => size(hash_fn, args),
         "count" => count(hash_fn, args),
         "info" => {
-            if backend == "keccak-asm" && ALL.iter().any(|x| x.0 == "keccak-asm") {
+            if backend == "keccak-asm" {
                 eprintln!("keccak-asm impl: {}", keccak_asm::IMPL);
             }
-            if backend == "xkcp" && ALL.iter().any(|x| x.0 == "xkcp") {
+            if backend == "xkcp" {
                 eprintln!(
                     "xkcp impl:       {}",
                     xkcp_rs::ffi::KeccakP1600_implementation.to_str().unwrap(),
