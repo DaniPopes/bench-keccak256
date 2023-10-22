@@ -2,7 +2,7 @@ SHELL = /bin/bash
 
 NAME = bench-keccak256
 BACKENDS = xkcp keccak-asm tiny-keccak sha3
-SIZES = 8 20 32 64 100 256 512 #1024 2048 4096 8192 10000 16384 32768 65536
+SIZES = 8 32 100 256 512 #1024 2048 4096 8192 10000 16384 32768 65536
 RUNS = 500000
 BIN = target/release/$(NAME)
 
@@ -34,7 +34,7 @@ hyperfine: build
 		for backend in $(BACKENDS); do \
 			args+=("$(BIN) $$backend count $(RUNS) $$size"); \
 		done; \
-		hyperfine -w5 -r25 "$${args[@]}"; \
+		hyperfine -w10 -r30 "$${args[@]}"; \
 	done
 
 clean:
