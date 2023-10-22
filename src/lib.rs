@@ -75,6 +75,7 @@ mod tests {
 
             if set.len() != 1 {
                 eprintln!("input: {}", hex::encode(&*input));
+                #[allow(clippy::needless_borrows_for_generic_args)]
                 for &(name, hash_fn) in ALL {
                     hash_fn(input, output);
                     eprintln!("- {name}() -> {}", hex::encode(&*output));
