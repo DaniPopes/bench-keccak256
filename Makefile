@@ -6,6 +6,8 @@ SIZES = 8 32 100 256 512 #1024 2048 4096 8192 10000 16384 32768 65536
 RUNS = 500000
 BIN = target/release/$(NAME)
 
+export RUSTFLAGS := $(RUSTFLAGS) -Ctarget-cpu=native
+
 build:
 	@echo "Building..."; \
 	cargo build -qr; \
