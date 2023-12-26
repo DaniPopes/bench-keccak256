@@ -66,16 +66,37 @@ Results:
   2. 1.05 ± 0.03 sha3
   3. 1.20 ± 0.03 xkcp
   4. 1.25 ± 0.03 keccak-asm
+- AMD Ryzen 9 7950X; default
+  1. 1.00 ± 0.00 keccak-asm
+  2. 1.27 ± 0.04 tiny-keccak
+  3. 1.27 ± 0.03 sha3
+  4. 1.33 ± 0.03 xkcp
+- AMD Ryzen 9 7950X; native (AVX512VL); keccak-asm manual x86_64 override
+  1. 1.00 ± 0.00 keccak-asm
+  2. 1.03 ± 0.03 tiny-keccak
+  3. 1.06 ± 0.04 sha3
+  4. 1.06 ± 0.04 xkcp
+- AMD Ryzen 9 7950X; native (AVX512VL); keccak-asm manual AVX2 override
+  1. 1.00 ± 0.00 tiny-keccak
+  2. 1.01 ± 0.03 xkcp
+  3. 1.03 ± 0.03 sha3
+  4. 1.06 ± 0.04 keccak-asm
+- AMD Ryzen 9 7950X; native (AVX512VL)
+  1. 1.00 ± 0.00 keccak-asm
+  2. 1.04 ± 0.03 tiny-keccak
+  3. 1.06 ± 0.03 xkcp
+  4. 1.09 ± 0.03 sha3
 
 ## Takeaways
 
-- keccak-asm armv8 outperforms everything else by >15%
-- keccak-asm x86_64 without AVX2 outperforms everything else by >20%; with AVX it's slightly faster than tiny-keccak
-- keccak-asm AVX2 is way slower than the regular x86_64 version, it might be obsolete by now; just use plain x86_64
-- keccak-asm AVX512/AVX512VL TODO
+- keccak-asm
+  - armv8 outperforms everything else by >15%
+  - x86_64 without AVX2 outperforms everything else by >20%; with AVX it's slightly faster than tiny-keccak
+  - AVX2 and AVX512(F) are way slower than the regular x86_64 version, they might be obsolete by now; just use plain x86_64
+  - AVX512VL is slightly (3-5%) faster than plain X86 on AMD, probably better on Intel
 - `sha3/asm` feature does not impact `sha3` performance. It enables assembly backend for the [`keccak`](https://crates.io/crates/keccak) crate but it doesn't seem to be meaningful enough
+- tiny_keccak outperforms or is on par with sha3
 
 ## TODO
 
 - Benchmark on Apple M1
-- Benchmark x86_64 AVX512F and AVX512VL
