@@ -16,6 +16,11 @@ Defs:
 - native: `-Ctarget-cpu=native`, `make hyperfine`
 
 Results:
+- MacBook Pro (14-inch, M1 Max, 2021)
+  2. 1.00 ± 0.00 xkcp
+  3. 1.02 ± 0.02 keccak-asm
+  4. 1.17 ± 0.02 sha3
+  5. 1.19 ± 0.02 tiny-keccak
 - MacBook Air (15-inch, M2, 2023)
   1. 1.00 ± 0.00 keccak-asm
   2. 1.01 ± 0.01 xkcp
@@ -96,7 +101,3 @@ Results:
   - AVX512VL is slightly (3-5%) faster than plain X86 on AMD, probably better on Intel
 - `sha3/asm` feature does not impact `sha3` performance. It enables assembly backend for the [`keccak`](https://crates.io/crates/keccak) crate but it doesn't seem to be meaningful enough
 - tiny_keccak outperforms or is on par with sha3
-
-## TODO
-
-- Benchmark on Apple M1
