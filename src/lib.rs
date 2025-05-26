@@ -9,6 +9,7 @@ pub const ALL: &[(&str, HashFn)] = &[
     ("tiny-keccak", tiny_keccak),
     ("keccak-asm", keccak_asm),
     ("xkcp", xkcp),
+    // ("constantine", constantine),
 ];
 
 /// [`sha3`](::sha3)
@@ -44,6 +45,16 @@ pub fn xkcp(input: &[u8], output: &mut [u8; 32]) {
     xkcp_rs::keccak256(input, output);
 }
 
+/*
+/// [`constantine_sys`]
+#[inline(never)]
+pub fn constantine(input: &[u8], output: &mut [u8; 32]) {
+    unsafe {
+        constantine_sys::ctt_keccak256_hash(output.as_mut_ptr(), input.as_ptr(), input.len(), false)
+    };
+}
+*/
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -62,9 +73,9 @@ mod tests {
         let output = &mut [0u8; 32];
 
         let mut set = std::collections::HashSet::new();
-        let rng = &mut rand::thread_rng();
+        let rng = &mut rand::rng();
         for _ in 0..cnt {
-            let sz = rng.gen_range(0..max_sz);
+            let sz = rng.random_range(0..max_sz);
             let input = &mut input[..sz];
             rng.fill_bytes(input);
 

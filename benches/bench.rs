@@ -9,7 +9,7 @@ fn bench_all(c: &mut Criterion) {
     let mut buffer = vec![0u8; max_sz];
     let output = &mut [0u8; 32];
 
-    let rng = &mut rand::thread_rng();
+    let rng = &mut rand::rng();
     for &(name, hash_fn) in bench_keccak256::ALL {
         let mut g = c.benchmark_group(name);
         g.sample_size(50);

@@ -8,6 +8,7 @@ Keccak-256 benchmarks.
 - [keccak-asm](https://github.com/DaniPopes/keccak-asm) (wraps [cryptogams](https://github.com/dot-asm/cryptogams), used by OpenSSL)
 - [tiny-keccak](https://crates.io/crates/tiny-keccak)
 - [sha3](https://crates.io/crates/sha3)
+<!-- - [constantine](https://github.com/mratsim/constantine) -->
 
 ## Results
 

@@ -4,19 +4,21 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-anyhow = "1.0.75"
-rand = "0.8.5"
+anyhow = "1"
+rand = "0.9"
 
 sha3 = { version = "0.10.8", features = ["asm"] }
 tiny-keccak = { version = "2.0.2", features = ["keccak"] }
-keccak-asm = { path = "../keccak-asm" }
-xkcp-rs = "0.0"
+keccak-asm = "0.1.4"
+xkcp-rs = "0.0.5"
+# constantine-sys = { path = "../constantine/constantine-rust/constantine-sys" }
 
 [dev-dependencies]
-criterion = "0.5.1"
+criterion = "0.6"
 hex = "0.4.3"
 
 [profile.release]
+lto = true
 opt-level = 3
 panic = "abort"
 codegen-units = 1

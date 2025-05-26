@@ -61,7 +61,7 @@ fn count(hash_fn: HashFn, args: &[String]) -> Result<()> {
     };
 
     let mut input = vec![0u8; size];
-    rand::thread_rng().fill_bytes(&mut input);
+    rand::rng().fill_bytes(&mut input);
     let input = &input[..];
     let output = &mut [0u8; 32];
     for _ in 0..black_box(count) {
